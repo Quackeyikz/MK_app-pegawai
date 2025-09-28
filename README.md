@@ -1,4 +1,4 @@
-![Hero Section](public\img\docs\Hero.png)
+![Hero Section](public/img/docs/Hero.png)
 
 <p align="center">
     <a href="https://skillicons.dev">
@@ -23,11 +23,11 @@
 ### ✨ The Looks
 I love how the pages turns out, utilizing [TailwindCSS UI-Blocks](https://tailwindcss.com/plus/) (template) for the hero and its header section. The chosen template comes with some beautiful background gradient as you can see from the image. Said gradients then utilized as a component in this project.  
 
-![Table Section](public\img\docs\Read_Fetch_Table_List.png) 
+![Table Section](public/img/docs/Read_Fetch_Table_List.png) 
 
 By using TailwindCSS, it is very easy to customize **both light and dark theme** simultaniously. You can view it by changing the browser appearance setting.
 
-![Table Section](public\img\docs\Read_Fetch_Table_List_Light.png)  
+![Table Section](public/img/docs/Read_Fetch_Table_List_Light.png)  
 
 ## 💠 Features
 
@@ -35,22 +35,22 @@ By using TailwindCSS, it is very easy to customize **both light and dark theme**
 To create a row of data — Using the route of `/employees/create`, a form will appear that ask you to fill out name, email, number, etc. accordin to the table structure. The table schema could be found in the [`database/migrations`](database/migrations/) folder.
 The whole process of basic *employee* CRUD could be read in the [`EmployeeController.php`](app/Http/Controllers/EmployeeController.php) file, there you can see the flow of function calling and routes being passed. (See also [`web.php`](routes/web.php)).
 
-![Create Section](public\img\docs\Create_Form_Data.png)  
+![Create Section](public/img/docs/Create_Form_Data.png)  
 
 #### (R) Read
 To display data in the table — Displaying a whole bunch of rows is started by creating a request to the database using `$employees = Employee::latest()->paginate(5);`. This line of code will display 5 rows of data from the *employees* table. Changing the parameter inside `paginate()` will result to display the respective amount of inputted digit. By entering a number after the `/employees` route will result on displaying the data according to the `id` from the table.  
 
-![Read Section](public\img\docs\Details_Employee_Info.png)  
+![Read Section](public/img/docs/Details_Employee_Info.png)  
 
 #### (U) Update
 Updating data from the specified `id` — A new page will appear if the info button from the employee list table is clicked. The button will redirect to a route with a digit at the end (refer to the employee blade files and the controller to see the flow). A fetch request will be made with a specified `id` by `$employee = Employee::find($id);`, then it will return a view of blade file from the employee folder by `return view('employee.show', compact('employee'));` (compacted result). The forms will retain its data from the table.  
 
-![Update Section](public\img\docs\Update_Page_Info.png)  
+![Update Section](public/img/docs/Update_Page_Info.png)  
 
 #### (D) Delete
 Deleting a row of data using an `id` — By using a function called `destroy()` from the controller, a row of data with the same specified `id` will be deleted. Then, the page will be redirected to `employees.index` or the employee list page using `return redirect()->route('employees.index');`  
 
-![Delete Section](public\img\docs\Delete_Prompt.png)  
+![Delete Section](public/img/docs/Delete_Prompt.png)  
 
 ## 🌊 Flow In The Making
 After making so many laravel projects without learning it, I can finally come to a conclusion that the starting flow is actually quite manageable. The process in the beginning is more focused on creating a solid foundation, for example: **master templates, reusable components, table migrations, package installation, and controller** to handle flow. Oh and, don't forget to setup your ENV according to your back-end state. Why? Because everybody's machines is different.  
@@ -194,9 +194,9 @@ Middleware is a mechanism to do a **filtering** over HTTP request. Its a layer b
 ## 💫 Last Words
 Reflecting my actions by making many Laravel projects without actually learning on how it works really put heavy burdens on my shoulder. I've been trying to make a good and quick-to-read documentations about all sort of things including Laravel basics. This is a concept included in this web app:
 
-![What Ive Learned Section](public\img\docs\Learning_WIP.png)  
+![What Ive Learned Section](public/img/docs/Learning_WIP.png)  
 
-![What Ive Learned Section](public\img\docs\Learning_WIP_Light.png)  
+![What Ive Learned Section](public/img/docs/Learning_WIP_Light.png)  
 
 I will implement these in a quick-access form using HTML and CSS. And I am planning to put it in the github.io domain. This is the planned route, not up right now but hey! Tell me if you read this and can access this in the future:
 
