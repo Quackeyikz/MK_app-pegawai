@@ -35,6 +35,18 @@
                 <td class="ps-5 pe-24 py-3 border border-white/50 text-left">{{ $employee->tanggal_masuk }}</td>
             </tr>
             <tr>
+                <td class="px-12 py-3 border border-white/50 text-center bg-white/30 font-bold">Department</td>
+                <td class="ps-5 pe-24 py-3 border border-white/50 text-left">{{ $employee->department->nama_departemen }}</td>
+            </tr>
+            <tr>
+                <td class="px-12 py-3 border border-white/50 text-center bg-white/30 font-bold">Position</td>
+                <td class="ps-5 pe-24 py-3 border border-white/50 text-left">{{ $employee->position->nama_jabatan }}</td>
+            </tr>
+            <tr>
+                <td class="px-12 py-3 border border-white/50 text-center bg-white/30 font-bold">Salary</td>
+                <td class="ps-5 pe-24 py-3 border border-white/50 text-left">{{ isset($salary->total_gaji) ? 'Rp' . $salary->total_gaji . ',-' : 'No salary yet' }}</td>
+            </tr>
+            <tr>
                 <td class="px-12 py-3 border border-white/50 text-center bg-white/30 font-bold">Status</td>
                 <td class="ps-5 pe-24 py-3 border border-white/50 text-left">
                     {!! $employee->status == 'aktif' ? '<i class="bi bi-square-fill text-green-500"></i>' : '<i class="bi bi-square-fill text-green-500"></i>' !!} {{ $employee->status }}
@@ -43,8 +55,8 @@
         </tbody>
     </table>
 
-    <div class="mt-4 w-full md:w[50%] lg:w-[30%] flex justify-items-center">
-        <a href="/employees" class="grow text-center rounded-md bg-indigo-500 px-12 py-3 hover:bg-indigo-600 text-white duration-300">Back to Employee List</a>
+    <div class="mt-4 mb-12 w-full md:w[50%] lg:w-[30%] flex justify-items-center">
+        <a href="{{ url('/employees') }}" class="grow text-center rounded-md bg-indigo-500 px-12 py-3 hover:bg-indigo-600 text-white duration-300">Back to Employee List</a>
     </div>
 </div>
 @endsection

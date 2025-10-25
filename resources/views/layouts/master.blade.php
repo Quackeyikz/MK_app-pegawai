@@ -32,12 +32,24 @@
                 {{-- Mengirim ke komponen navLink dengan attribute, onPage (variabel sendiri), dan slot (inside element) --}}
                 <x-nav-link href="{{ url('/') }}" :onPage="request()->is('/')">Home</x-nav-link>
                 <x-nav-link href="{{ url('/employees') }}" :onPage="request()->is('employees')">Employee List</x-nav-link>
+                <x-nav-link href="{{ url('/departments') }}" :onPage="request()->is('departments')">Departments</x-nav-link>
+                <x-nav-link href="{{ url('/positions') }}" :onPage="request()->is('positions')">Positions</x-nav-link>
+                <x-nav-link href="{{ url('/salaries') }}" :onPage="request()->is('salaries')">Salaries</x-nav-link>
+                <x-nav-link href="{{ url('/attendance') }}" :onPage="request()->is('attendance')">Attendance</x-nav-link>
                 <x-nav-link href="{{ url('/sandwich') }}" :onPage="request()->is('sandwich')">Sandwich</x-nav-link>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <x-nav-link href="{{ url('/employees/create') }}" :onPage="request()->is('employees/create')">
-                    Create Data <span aria-hidden="true">&rarr;</span>
-                </x-nav-link>
+                @if (request()->is('departments*'))
+                    <x-nav-link href="{{ url('/departments/create') }}" :onPage="request()->is('departments/create')">Create Department <span aria-hidden="true">&rarr;</span></x-nav-link>
+                @elseif (request()->is('positions*'))
+                    <x-nav-link href="{{ url('/positions/create') }}" :onPage="request()->is('positions/create')">Create Position <span aria-hidden="true">&rarr;</span></x-nav-link>
+                @elseif (request()->is('salaries*'))
+                    <x-nav-link href="{{ url('/salaries/create') }}" :onPage="request()->is('salaries/create')">Create Salaries <span aria-hidden="true">&rarr;</span></x-nav-link>
+                @elseif (request()->is('attendance*'))
+                    <x-nav-link href="{{ url('/attendance/create') }}" :onPage="request()->is('attendance/create')">Create Attendance <span aria-hidden="true">&rarr;</span></x-nav-link>
+                @else
+                    <x-nav-link href="{{ url('/employees/create') }}" :onPage="request()->is('employees/create')">Create Employee <span aria-hidden="true">&rarr;</span></x-nav-link>
+                @endif
             </div>
         </nav>
         <el-dialog>
@@ -56,15 +68,27 @@
                         </div>
                         <div class="mt-6 flow-root">
                             <div class="-my-6 divide-y divide-white/10">
-                                <div class="space-y-2 py-6">
+                                <div class="space-y-2 py-6 flex flex-col items-baseline gap-4">
                                     <x-nav-link href="{{ url('/') }}" :onPage="request()->is('/')">Home</x-nav-link>
                                     <x-nav-link href="{{ url('/employees') }}" :onPage="request()->is('employees')">Employee List</x-nav-link>
+                                    <x-nav-link href="{{ url('/departments') }}" :onPage="request()->is('departments')">Departments</x-nav-link>
+                                    <x-nav-link href="{{ url('/positions') }}" :onPage="request()->is('positions')">Positions</x-nav-link>
+                                    <x-nav-link href="{{ url('/salaries') }}" :onPage="request()->is('salaries')">Salaries</x-nav-link>
+                                    <x-nav-link href="{{ url('/attendance') }}" :onPage="request()->is('attendance')">Attendance</x-nav-link>
                                     <x-nav-link href="{{ url('/sandwich') }}" :onPage="request()->is('sandwich')">Sandwich</x-nav-link>
                                 </div>
                                 <div class="py-6">
-                                    <x-nav-link href="{{ url('/employees/create') }}" :onPage="request()->is('employees/create')">
-                                        Create Data <span aria-hidden="true">&rarr;</span>
-                                    </x-nav-link>
+                                    @if (request()->is('departments*'))
+                                        <x-nav-link href="{{ url('/departments/create') }}" :onPage="request()->is('departments/create')">Create Department <span aria-hidden="true">&rarr;</span></x-nav-link>
+                                    @elseif (request()->is('positions*'))
+                                        <x-nav-link href="{{ url('/positions/create') }}" :onPage="request()->is('positions/create')">Create Position <span aria-hidden="true">&rarr;</span></x-nav-link>
+                                    @elseif (request()->is('salaries*'))
+                                        <x-nav-link href="{{ url('/salaries/create') }}" :onPage="request()->is('salaries/create')">Create Salaries <span aria-hidden="true">&rarr;</span></x-nav-link>
+                                    @elseif (request()->is('attendance*'))
+                                        <x-nav-link href="{{ url('/attendance/create') }}" :onPage="request()->is('attendance/create')">Create Attendance <span aria-hidden="true">&rarr;</span></x-nav-link>
+                                    @else
+                                        <x-nav-link href="{{ url('/employees/create') }}" :onPage="request()->is('employees/create')">Create Employee <span aria-hidden="true">&rarr;</span></x-nav-link>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -77,5 +101,36 @@
     <main>
         @yield('content')
     </main>
+
+    <div id="overlay-loading" class="transition duration-300 ease-in-out fixed top-0 left-0 flex justify-center items-center w-full h-full bg-white dark:bg-gray-900 z-50" style="opacity: 1;">
+        <x-background-gradient></x-background-gradient>
+        <img class="m-auto w-[90%] md:w-[80%] lg:w-[10%] transition duration-300 ease-in-out animate-pulse" src="{{ asset('img/calstone-light-o.gif') }}" alt="Loading Icon">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // document.body.style.visibility = 'visible';
+            // document.body.style.opacity = 1;
+
+            const overlay = document.getElementById('overlay-loading');
+
+            overlay.style.opacity = '1';
+            overlay.style.transition = 'opacity 600ms ease-in-out';
+
+            requestAnimationFrame(() => {
+                overlay.style.opacity = '0';
+            });
+
+            const removeOverlay = () => {
+                if (overlay && overlay.style) {
+                    overlay.style.display = 'none';
+                }
+                overlay.removeEventListener('transitionend', removeOverlay);
+            };
+
+            overlay.addEventListener('transitionend', removeOverlay);
+            setTimeout(removeOverlay, 800);
+        });
+    </script>
 </body>
 </html>

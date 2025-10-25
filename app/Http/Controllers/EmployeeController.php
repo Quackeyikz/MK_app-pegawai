@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;    // 1. Import model Employee
+use App\Models\Department;
+use App\Models\Positions;
+use App\Models\Salaries;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
         // 2. Mengambil data dari tabel employees
-        $employees = Employee::latest()->paginate(5);
+        $employees = Employee::latest()->get();
 
         // 3. Mengirim data ke view menggunakan compact.
         // Cara lain: array, with, make, dll.
@@ -22,7 +25,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employee.create');
+        $positions = Positions::get();
+        $departments = Department::get();
+        return view('employee.create', compact(['positions', 'departments']));
     }
 
     /**
@@ -37,7 +42,9 @@ class EmployeeController extends Controller
             'tanggal_lahir' => 'required|date',
             'alamat'        => 'required|string|max:255',
             'tanggal_masuk' => 'required|date',
-            'status'        => 'required|string|max:50',
+            'departemen_id' => 'required|integer',
+            'jabatan_id'    => 'required|integer',
+            'status'        => 'required|string|max:50'
         ]);
 
         Employee::create($request->all());
@@ -49,8 +56,9 @@ class EmployeeController extends Controller
      */
     public function show(string $id)
     {
-        $employee = Employee::find($id);
-        return view('employee.show', compact('employee'));
+        $salary = Salaries::where('karyawan_id', $id)->latest()->first();
+        $employee = Employee::with(['department', 'position'])->find($id);
+        return view('employee.show', compact(['employee', 'salary']));
     }
 
     /**
@@ -58,8 +66,10 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
+        $departments = Department::get();
+        $positions = Positions::get();
         $employee = Employee::find($id);
-        return view('employee.edit', compact('employee'));
+        return view('employee.edit', compact(['employee', 'departments', 'positions']));
     }
 
     /**
@@ -74,6 +84,8 @@ class EmployeeController extends Controller
             'tanggal_lahir' => 'required|date',
             'alamat'        => 'required|string|max:255',
             'tanggal_masuk' => 'required|date',
+            'departemen_id' => 'required|integer',
+            'jabatan_id'    => 'required|integer',
             'status'        => 'required|string|max:50',
         ]);
 
@@ -85,6 +97,8 @@ class EmployeeController extends Controller
             'tanggal_lahir',
             'alamat',
             'tanggal_masuk',
+            'departemen_id',
+            'jabatan_id',
             'status',
         ]));
 

@@ -29,8 +29,34 @@
                     <label for="tanggal_lahir" class="font-semibold text-lg text-gray-700 dark:text-gray-100">Date of Birth:</label>
                     <input type="date" name="tanggal_lahir" class="px-3 py-3 rounded-md bg-gray-100" value="{{ old('tanggal_lahir', $employee->tanggal_lahir) }}">
                 </div>
+                <div class="mt-4 flex flex-col gap-1">
+                    <label for="jabatan_id" class="font-semibold text-lg text-gray-700 dark:text-gray-100">Position:</label>
+                    <select type="number" name="jabatan_id" class="px-3 py-3 rounded-md bg-gray-100">
+                        @if (isset($positions) && $positions->isNotEmpty())
+                            <option value="" selected disabled>Please select positions</option>
+                            @foreach ($positions as $position)
+                                <option value="{{ $position->id }}" {{ $employee->jabatan_id == $position->id ? 'selected' : '' }}>{{ $position->nama_jabatan }}</option>
+                            @endforeach
+                        @else
+                            <option value="" selected disabled>No positions are available</option>
+                        @endif
+                    </select>
+                </div>
             </div>
             <div class="grow">
+                <div class="mt-4 flex flex-col gap-1">
+                    <label for="departemen_id" class="font-semibold text-lg text-gray-700 dark:text-gray-100">Department:</label>
+                    <select type="number" name="departemen_id" class="px-3 py-3 rounded-md bg-gray-100">
+                        @if (isset($departments) && $departments->isNotEmpty())
+                            <option value="" selected disabled>Please select department</option>
+                            @foreach ($departments as $department)
+                                <option value="{{ $department->id }}" {{ $employee->departemen_id == $department->id ? 'selected' : '' }}>{{ $department->nama_departemen }}</option>
+                            @endforeach
+                        @else
+                            <option value="" selected disabled>No departments are available</option>
+                        @endif
+                    </select>
+                </div>
                 <div class="mt-4 flex flex-col gap-1">
                     <label for="alamat" class="font-semibold text-lg text-gray-700 dark:text-gray-100">Address:</label>
                     <textarea type="text" name="alamat" class="px-3 py-3 rounded-md bg-gray-100" placeholder="Your address here">{{ old('alamat', $employee->alamat) }}</textarea>
@@ -42,8 +68,8 @@
                 <div class="mt-4 flex flex-col gap-1">
                     <label for="status" class="font-semibold text-lg text-gray-700 dark:text-gray-100">Status</label>
                     <select name="status" class="px-3 py-3 rounded-md bg-gray-100">
-                        <option value="aktif" {{ old('status', $employee->status) == 'aktif' ? 'selected' : '' }}>Aktif</option>
-                        <option value="nonaktif" {{ old('status', $employee->status) == 'nonaktif' ? 'selected' : '' }}>Nonaktif</option>
+                        <option value="Active" {{ old('status', $employee->status) == 'Active' ? 'selected' : '' }}>Active</option>
+                        <option value="Inactive" {{ old('status', $employee->status) == 'Inactive' ? 'selected' : '' }}>Inactive</option>
                     </select>
                 </div>
                 <div class="mt-6 flex flex-row gap-3 justify-end">

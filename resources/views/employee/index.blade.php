@@ -53,14 +53,14 @@
                             <td>{{ $employee->tanggal_lahir }}</td>
                             <td>{{ $employee->alamat }}</td>
                             <td>{{ $employee->tanggal_masuk }}</td>
-                            <td>{!! $employee->status == 'aktif' ? '<i class="bi bi-square-fill text-green-500"></i>' : '<i class="bi bi-square-fill text-red-500"></i>' !!} {{ $employee->status }}</td>
+                            <td>{!! $employee->status == 'Active' ? '<i class="bi bi-square-fill text-green-500"></i>' : '<i class="bi bi-square-fill text-red-500"></i>' !!} {{ $employee->status }}</td>
                             <td class="flex flex-row flex-nowrap gap-2">
                                 <a href="{{ route('employees.show', $employee->id) }}" class="py-1 px-2 rounded-sm bg-amber-400 hover:bg-amber-500 text-gray-700"><i class="bi bi-info-circle"></i></a>
                                 <a href="{{ route('employees.edit', $employee->id) }}" class="py-1 px-2 rounded-sm bg-indigo-500 hover:bg-indigo-600 text-white"><i class="bi bi-pencil-square"></i></a>
                                 <form action="{{ route('employees.destroy', $employee->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Yakin ingin menghapus?')" class="py-1 px-2 rounded-sm hover:cursor-pointer bg-red-500 hover:bg-red-600 text-white"><i class="bi bi-trash3"></i></button>
+                                    <button type="submit" onclick="return confirm('Are you sure you want to delete this employee data?')" class="py-1 px-2 rounded-sm hover:cursor-pointer bg-red-500 hover:bg-red-600 text-white"><i class="bi bi-trash3"></i></button>
                                 </form>
                             </td>
                         </tr>
