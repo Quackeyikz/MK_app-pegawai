@@ -102,12 +102,12 @@
         @yield('content')
     </main>
 
-    <div id="overlay-loading" class="transition duration-300 ease-in-out fixed top-0 left-0 flex justify-center items-center w-full h-full bg-white dark:bg-gray-900 z-50" style="opacity: 1;">
+    {{-- <div id="overlay-loading" class="transition duration-300 ease-in-out fixed top-0 left-0 flex justify-center items-center w-full h-full bg-white dark:bg-gray-900 z-50" style="opacity: 1;">
         <x-background-gradient></x-background-gradient>
-        <img class="m-auto w-[90%] md:w-[80%] lg:w-[10%] transition duration-300 ease-in-out animate-pulse" src="{{ asset('img/calstone-light-o.gif') }}" alt="Loading Icon">
-    </div>
+        <img class="m-auto w-[70%] md:w-[80%] lg:w-[10%] transition duration-300 ease-in-out animate-pulse" src="{{ asset('img/calstone-light-o.gif') }}" alt="Loading Icon">
+    </div> --}}
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             // document.body.style.visibility = 'visible';
             // document.body.style.opacity = 1;
@@ -131,6 +131,6 @@
             overlay.addEventListener('transitionend', removeOverlay);
             setTimeout(removeOverlay, 800);
         });
-    </script>
+    </script> --}}
 </body>
 </html>
