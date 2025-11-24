@@ -36,6 +36,7 @@
                 <x-nav-link href="{{ url('/positions') }}" :onPage="request()->is('positions')">Positions</x-nav-link>
                 <x-nav-link href="{{ url('/salaries') }}" :onPage="request()->is('salaries')">Salaries</x-nav-link>
                 <x-nav-link href="{{ url('/attendance') }}" :onPage="request()->is('attendance')">Attendance</x-nav-link>
+                <x-nav-link href="{{ url('/projects') }}" :onPage="request()->is('projects')">Projects</x-nav-link>
                 <x-nav-link href="{{ url('/sandwich') }}" :onPage="request()->is('sandwich')">Sandwich</x-nav-link>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -47,6 +48,8 @@
                     <x-nav-link href="{{ url('/salaries/create') }}" :onPage="request()->is('salaries/create')">Create Salaries <span aria-hidden="true">&rarr;</span></x-nav-link>
                 @elseif (request()->is('attendance*'))
                     <x-nav-link href="{{ url('/attendance/create') }}" :onPage="request()->is('attendance/create')">Create Attendance <span aria-hidden="true">&rarr;</span></x-nav-link>
+                @elseif (request()->is('projects*'))
+                    <x-nav-link href="{{ url('/projects/create') }}" :onPage="request()->is('projects/create')">Create Projects <span aria-hidden="true">&rarr;</span></x-nav-link>
                 @else
                     <x-nav-link href="{{ url('/employees/create') }}" :onPage="request()->is('employees/create')">Create Employee <span aria-hidden="true">&rarr;</span></x-nav-link>
                 @endif
@@ -75,6 +78,7 @@
                                     <x-nav-link href="{{ url('/positions') }}" :onPage="request()->is('positions')">Positions</x-nav-link>
                                     <x-nav-link href="{{ url('/salaries') }}" :onPage="request()->is('salaries')">Salaries</x-nav-link>
                                     <x-nav-link href="{{ url('/attendance') }}" :onPage="request()->is('attendance')">Attendance</x-nav-link>
+                                    <x-nav-link href="{{ url('/projects') }}" :onPage="request()->is('projects')">Projects</x-nav-link>
                                     <x-nav-link href="{{ url('/sandwich') }}" :onPage="request()->is('sandwich')">Sandwich</x-nav-link>
                                 </div>
                                 <div class="py-6">
@@ -86,6 +90,8 @@
                                         <x-nav-link href="{{ url('/salaries/create') }}" :onPage="request()->is('salaries/create')">Create Salaries <span aria-hidden="true">&rarr;</span></x-nav-link>
                                     @elseif (request()->is('attendance*'))
                                         <x-nav-link href="{{ url('/attendance/create') }}" :onPage="request()->is('attendance/create')">Create Attendance <span aria-hidden="true">&rarr;</span></x-nav-link>
+                                    @elseif (request()->is('projects*'))
+                                        <x-nav-link href="{{ url('/projects/create') }}" :onPage="request()->is('projects/create')">Create Projects <span aria-hidden="true">&rarr;</span></x-nav-link>
                                     @else
                                         <x-nav-link href="{{ url('/employees/create') }}" :onPage="request()->is('employees/create')">Create Employee <span aria-hidden="true">&rarr;</span></x-nav-link>
                                     @endif

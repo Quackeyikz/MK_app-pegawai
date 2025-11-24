@@ -44,7 +44,7 @@
                         <tr class="hover:bg-indigo-300/20 dark:hover:bg-indigo-400/50">
                             <td>{{ $position->id }}</td>
                             <td>{{ $position->nama_jabatan }}</td>
-                            <td>Rp{{ $position->gaji_pokok }},-</td>
+                            <td>${{ $position->gaji_pokok }},-</td>
                             <td class="flex flex-row flex-nowrap gap-2">
                                 <a href="{{ route('positions.edit', $position->id) }}" class="py-1 px-2 rounded-sm bg-indigo-500 hover:bg-indigo-600 text-white"><i class="bi bi-pencil-square"></i></a>
                                 <form action="{{ route('positions.destroy', $position->id) }}" method="POST">

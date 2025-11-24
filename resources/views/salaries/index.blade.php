@@ -48,10 +48,10 @@
                         <tr class="hover:bg-indigo-300/20 dark:hover:bg-indigo-400/50">
                             <td>{{ $salary->employees->nama_lengkap }}</td>
                             <td>{{ $salary->bulan }}</td>
-                            <td>{{ $salary->gaji_pokok }}</td>
-                            <td>{{ $salary->tunjangan }}</td>
-                            <td>{{ $salary->potongan }}</td>
-                            <td>{{ $salary->total_gaji }}</td>
+                            <td>${{ $salary->gaji_pokok }},-</td>
+                            <td>${{ $salary->tunjangan }},-</td>
+                            <td>${{ $salary->potongan }},-</td>
+                            <td>${{ $salary->total_gaji }},-</td>
                             <td class="flex flex-row flex-nowrap gap-2">
                                 <a href="{{ route('employees.show', $salary->employees->id) }}" class="py-1 px-2 rounded-sm bg-amber-400 hover:bg-amber-500 text-gray-700"><i class="bi bi-info-circle"></i></a>
                                 <a href="{{ route('salaries.edit', $salary->id) }}" class="py-1 px-2 rounded-sm bg-indigo-500 hover:bg-indigo-600 text-white"><i class="bi bi-pencil-square"></i></a>

@@ -27,4 +27,9 @@ class Employee extends Model
     {
         return $this->belongsTo(Positions::class, 'jabatan_id');
     }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class)->withPivot('role');
+    }
 }
